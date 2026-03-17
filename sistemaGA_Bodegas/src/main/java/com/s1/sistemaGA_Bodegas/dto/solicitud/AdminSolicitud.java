@@ -24,7 +24,6 @@ public record AdminSolicitud(
         @Size(min = 4, max = 60, message = "El usuario debe tener entre 4 y 60 caracteres")
         String usuario,
 
-        @NotBlank(message = "La contraseña es obligatoria")
         @Size(min = 4, message = "La contraseña debe tener mínimo 4 caracteres")
         String contrasena
 ) {

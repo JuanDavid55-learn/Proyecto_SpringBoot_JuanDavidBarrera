@@ -1,6 +1,5 @@
 package com.s1.sistemaGA_Bodegas.modelo;
 
-import com.s1.sistemaGA_Bodegas.listener.ProductoAuditoriaListener;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -11,7 +10,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "producto")
-@EntityListeners(ProductoAuditoriaListener.class)
 public class Producto {
 
     @Id
