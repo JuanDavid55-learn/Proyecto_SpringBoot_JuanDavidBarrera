@@ -14,4 +14,10 @@ public class ReporteControlador {
     public ResponseEntity<ResumenGeneralRespuesta> obtenerResumen() {
         return ResponseEntity.ok(reporteServicio.generarResumen());
     }
+
+    //enpoint movimiento x tipo
+    @GetMapping("/movimientos")
+    public ResponseEntity<ReporteMovimientosRespuesta> obtenerReporteMovimientos() {
+        return ResponseEntity.ok(reporteServicio.generarReporteMovimientos());
+    }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MovimientoServicioImpl implements MovimientoServicio{
+public class MovimientoServicioImpl implements MovimientoServicio {
 
     private final MovimientoRepositorio movimientoRepositorio;
     private final EmpleadoRepositorio empleadoRepositorio;
@@ -27,11 +27,11 @@ public class MovimientoServicioImpl implements MovimientoServicio{
         Empleado responsable = empleadoRepositorio.findById(Long.valueOf(dto.responsableId())).orElseThrow(() -> new RuntimeException("Empleado no encontrado con ese id"));
         Bodega bodegaOrigen = null;
         if (dto.bodegaOrigenId() != null) {
-            bodegaOrigen = bodegaRepositorio.findById(Long.valueOf(dto.bodegaOrigenId())).orElseThrow(() -> new RuntimeException("Bodega origen no encontrada con ese id" ));
+            bodegaOrigen = bodegaRepositorio.findById(Long.valueOf(dto.bodegaOrigenId())).orElseThrow(() -> new RuntimeException("Bodega origen no encontrada con ese id"));
         }
         Bodega bodegaDestino = null;
         if (dto.bodegaDestinoId() != null) {
-            bodegaDestino = bodegaRepositorio.findById(Long.valueOf(dto.bodegaDestinoId())).orElseThrow(()-> new RuntimeException("Bodega destino no encontrada con ese id" ));
+            bodegaDestino = bodegaRepositorio.findById(Long.valueOf(dto.bodegaDestinoId())).orElseThrow(() -> new RuntimeException("Bodega destino no encontrada con ese id"));
         }
         Movimiento movimiento = movimientoMapeador.DTOAEntidad(dto, responsable, bodegaOrigen, bodegaDestino);
         for (var item : dto.productos()) {
@@ -83,13 +83,13 @@ public class MovimientoServicioImpl implements MovimientoServicio{
 
     @Override
     public List<MovimientoRespuesta> obtenerPorRangoFechas(LocalDateTime desde, LocalDateTime hasta) {
-        List<Movimiento> movimientos = movimientoRepositorio.findByFechaBetween(desde,hasta);
+        List<Movimiento> movimientos = movimientoRepositorio.findByFechaBetween(desde, hasta);
         return movimientos.stream().map(movimientoMapeador::entidadADTO).toList();
     }
 
     @Override
-    public List<MovimientoRespuesta> listarRecientes(LocalDateTime fecha) {
-        List<Movimiento> movimientos = movimientoRepositorio.findTop10ByFechaOrderByFechaDesc(fecha);
-        return movimientos.stream().map(movimientoMapeador::entidadADTO).toList();
+    public List<MovimientoRespuesta> obtenerRecientes() {
+        return movimientoRepositorio.findTop10ByOrderByFechaDesc().stream()
+                .map(movimientoMapeador::entidadADTO).toList();
     }
 }

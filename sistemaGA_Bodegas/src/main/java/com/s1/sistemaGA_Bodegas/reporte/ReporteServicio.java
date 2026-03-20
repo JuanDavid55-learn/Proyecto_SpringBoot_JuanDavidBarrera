@@ -1,5 +1,6 @@
 package com.s1.sistemaGA_Bodegas.reporte;
 
+import com.s1.sistemaGA_Bodegas.modelo.TipoMovimiento;
 import com.s1.sistemaGA_Bodegas.repositorio.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -74,5 +75,16 @@ public class ReporteServicio {
                 stockPorBodega,
                 productosMasMovidos
         );
+    }
+
+    // reporte Movimientos x tipo
+    @Transactional(readOnly = true)
+    public ReporteMovimientosRespuesta generarReporteMovimientos() {
+        long total         = movimientoRepositorio.count();
+        long entradas      = movimientoRepositorio.countByTipo(TipoMovimiento.ENTRADA);
+        long salidas       = movimientoRepositorio.countByTipo(TipoMovimiento.SALIDA);
+        long transferencias = movimientoRepositorio.countByTipo(TipoMovimiento.TRANSFERENCIA);
+
+        return new ReporteMovimientosRespuesta(total, entradas, salidas, transferencias);
     }
 }

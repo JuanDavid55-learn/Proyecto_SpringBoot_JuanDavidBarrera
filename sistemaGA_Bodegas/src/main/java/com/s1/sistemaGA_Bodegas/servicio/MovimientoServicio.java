@@ -3,6 +3,7 @@ package com.s1.sistemaGA_Bodegas.servicio;
 import com.s1.sistemaGA_Bodegas.dto.solicitud.MovimientoSolicitud;
 import com.s1.sistemaGA_Bodegas.dto.respuesta.MovimientoRespuesta;
 import com.s1.sistemaGA_Bodegas.modelo.TipoMovimiento;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,5 +25,5 @@ public interface MovimientoServicio {
 
     List<MovimientoRespuesta> obtenerPorRangoFechas(LocalDateTime desde, LocalDateTime hasta);
 
-    List<MovimientoRespuesta> listarRecientes(LocalDateTime fecha);
+    List<MovimientoRespuesta> obtenerRecientes();
 }
