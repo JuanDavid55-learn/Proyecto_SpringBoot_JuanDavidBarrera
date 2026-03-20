@@ -23,4 +23,6 @@ public interface MovimientoServicio {
     List<MovimientoRespuesta> obtenerPorBodegaDestino(Long bodegaId);
 
     List<MovimientoRespuesta> obtenerPorRangoFechas(LocalDateTime desde, LocalDateTime hasta);
+
+    List<MovimientoRespuesta> listarRecientes(LocalDateTime fecha);
 }

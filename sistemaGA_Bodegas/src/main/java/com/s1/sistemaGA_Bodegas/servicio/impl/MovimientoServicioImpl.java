@@ -86,4 +86,10 @@ public class MovimientoServicioImpl implements MovimientoServicio{
         List<Movimiento> movimientos = movimientoRepositorio.findByFechaBetween(desde,hasta);
         return movimientos.stream().map(movimientoMapeador::entidadADTO).toList();
     }
+
+    @Override
+    public List<MovimientoRespuesta> listarRecientes(LocalDateTime fecha) {
+        List<Movimiento> movimientos = movimientoRepositorio.findTop10ByFechaOrderByFechaDesc(fecha);
+        return movimientos.stream().map(movimientoMapeador::entidadADTO).toList();
+    }
 }

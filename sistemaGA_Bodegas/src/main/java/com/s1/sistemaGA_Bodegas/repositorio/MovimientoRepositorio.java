@@ -19,4 +19,6 @@ public interface MovimientoRepositorio extends JpaRepository<Movimiento, Long>{
     List<Movimiento> findByBodegaDestinoId(Long bodegaId);
 
     List<Movimiento> findByFechaBetween(LocalDateTime desde, LocalDateTime hasta);
+
+    List<Movimiento> findTop10ByFechaOrderByFechaDesc(LocalDateTime fecha);
 }

@@ -64,4 +64,8 @@ public class MovimientoControlador {
         return ResponseEntity.ok().body(movimientoServicio.obtenerPorRangoFechas(desde, hasta));
     }
 
+    @GetMapping("/movimientos/recientes")
+    public ResponseEntity<List<MovimientoRespuesta>> listarRecientes(@RequestParam @DateTimeFormat LocalDateTime fecha){
+        return ResponseEntity.ok().body(movimientoServicio.listarRecientes(fecha));
+    }
 }
